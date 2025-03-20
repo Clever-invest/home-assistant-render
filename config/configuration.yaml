@@ -1,0 +1,44 @@
+# Базовая конфигурация Home Assistant
+default_config:
+
+# Настройки для работы с обратным прокси
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 127.0.0.1
+    - ::1
+    - 172.16.0.0/12
+    - 10.0.0.0/8
+    - 192.168.0.0/16
+  ip_ban_enabled: false
+  login_attempts_threshold: 5
+
+# Настройка API
+api:
+
+# Оптимизированные настройки логирования
+logger:
+  default: warning
+  logs:
+    homeassistant.components.websocket_api: critical
+    homeassistant.components.http.ban: warning
+
+# Базовые компоненты
+frontend:
+system_health:
+config:
+person:
+mobile_app:
+
+# Отключение обнаружения в сети для облачного окружения
+discovery:
+  ignore:
+    - sonos
+    - google_cast
+
+# Временная зона (будет перезаписана из переменной окружения Docker)
+homeassistant:
+  name: Home Assistant
+  unit_system: metric
+  time_zone: Asia/Dubai
+  external_url: "{EXTERNAL_URL}"
