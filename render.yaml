@@ -1,0 +1,32 @@
+services:
+  # Сервис Home Assistant
+  - type: web
+    name: home-assistant
+    env: docker
+    plan: standard
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /
+    region: frankfurt # Выберите ближайший к вам регион
+    envVars:
+      - key: TZ
+        value: Asia/Dubai
+      - key: PUID
+        value: 1000
+      - key: PGID
+        value: 1000
+      - key: EXTERNAL_URL
+        fromService:
+          name: home-assistant
+          type: web
+          property: url
+    
+    # Настройка диска для постоянного хранения данных
+    disk:
+      name: home-assistant-data
+      mountPath: /config
+      sizeGB: 5
+    
+    # Настройка портов
+    ports:
+      - port: 8123
+        protocol: tcp
