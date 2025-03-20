@@ -1,0 +1,29 @@
+# Home Assistant
+config/.storage
+config/.cloud
+config/.google.token
+config/home-assistant_v2.db*
+config/home-assistant.log*
+config/secrets.yaml
+config/tts
+config/known_devices.yaml
+config/deps
+config/entity_registry.yaml
+config/.uuid
+
+# Операционные системы
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Временные файлы
+*.swp
+*.swo
+*~
+
+# IDE и редакторы
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
